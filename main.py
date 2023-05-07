@@ -1,7 +1,7 @@
 from datetime import datetime
 import pytz
 
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 
 app = FastAPI()
 
@@ -17,9 +17,13 @@ def read_root():
 
 @app.get("/time/{zone}")
 def read_time(zone: str):
-    _zone = zone.replace('+', '-') if '+' in zone else zone.replace('-', '+')
-    gmt_zone = pytz.timezone("Etc/" + _zone)
-    current_time = datetime.now(gmt_zone)
+    try:
+        _zone = zone.replace('+', '-') if '+' in zone else zone.replace('-', '+')
+        gmt_zone = pytz.timezone("Etc/" + _zone)
+        current_time = datetime.now(gmt_zone)
+    except pytz.UnknownTimeZoneError:
+        raise HTTPException(status_code=400, detail="Invalid GMT timezone")
+    
     return {
         "time" : current_time
     }
