@@ -3,12 +3,12 @@
 
 API to get time from a certain GMT timezone.
 
-This project has deployed at: https://gtimezone.onrender.com/
+This project was deployed at: https://gtimezone.onrender.com/
 
 You can pass as parameter the GMT timezone as the sample:
 
-https://gtimezone.onrender.com/time/gmt-3
-https://gtimezone.onrender.com/time/gmt+7
+https://gtimezone.onrender.com/time/gmt-3 <br />
+https://gtimezone.onrender.com/time/gmt+7 
 
 ## Run Locally
 
